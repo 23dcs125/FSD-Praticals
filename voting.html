@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-Time Voting System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f7f7f7;
+    }
+    .container {
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #eee;
+    }
+    .results {
+      margin-top: 20px;
+      font-size: 16px;
+      text-align: left;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Vote for Your Favorite Language</h2>
+    <button onclick="vote('javascript')">JavaScript</button>
+    <button onclick="vote('python')">Python</button>
+    <button onclick="vote('java')">Java</button>
+    
+    <div class="results" id="results">
+      JavaScript: 0 <br>
+      Python: 0 <br>
+      Java: 0
+    </div>
+  </div>
+
+  <script>
+    let votes = {
+      javascript: 0,
+      python: 0,
+      java: 0
+    };
+
+    function updateResults() {
+      document.getElementById('results').innerHTML = `
+        JavaScript: ${votes.javascript} <br>
+        Python: ${votes.python} <br>
+        Java: ${votes.java}
+      `;
+    }
+
+    function vote(language) {
+      votes[language]++;
+      updateResults();
+    }
+
+    // Simulate real-time random voting
+    setInterval(() => {
+      const languages = Object.keys(votes);
+      const randomLang = languages[Math.floor(Math.random() * languages.length)];
+      votes[randomLang]++;
+      updateResults();
+    }, 2000);
+
+    // Initialize
+    updateResults();
+  </script>
+</body>
+</html>
