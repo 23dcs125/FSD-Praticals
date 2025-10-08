@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #b71c1c; /* Dark red background */
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: black;
+    }
+
+    input {
+      padding: 10px;
+      width: 200px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 10px 15px;
+      background-color: white;
+      color: black;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ddd;
+    }
+
+    p {
+      margin-top: 15px;
+      font-size: 18px;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Weather App</h1>
+    <input type="text" id="cityInput" placeholder="Enter city name">
+    <br>
+    <button id="getWeatherBtn">Click here to Get Weather</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    // Hardcoded weather data
+    const weatherData = {
+      Ahmedabad: "40°C",
+      Mumbai: "32°C",
+      Delhi: "38°C",
+      Bangalore: "28°C",
+      Chennai: "35°C"
+    };
+
+    // Handle button click
+    document.getElementById("getWeatherBtn").addEventListener("click", () => {
+      const city = document.getElementById("cityInput").value.trim();
+      const result = document.getElementById("result");
+
+      if (city in weatherData) {
+        result.textContent = `The weather in ${city} is ${weatherData[city]}`;
+      } else {
+        result.textContent = `Sorry, weather data for "${city}" is not available.`;
+      }
+    });
+  </script>
+</body>
+</html>
